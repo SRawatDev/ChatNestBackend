@@ -12,6 +12,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^8.5.2",
     "nodemon": "^3.1.4",
+    "socket.io": "^4.7.5",
     "validatorjs": "^3.22.1"
   },
   "type": "module",

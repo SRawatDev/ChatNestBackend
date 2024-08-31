@@ -30,9 +30,10 @@ UserValidation.userVerifyPassword = async (body) => {
 
 UserValidation.updateUser = async (body) => {
   let rules = {
+    userId:'required',
     name: "required|string",
     email: "required|email",
-    profile_pic: "required|string",
+    profile_pic: "string",
   }
   const validation = await customvalidation(body, rules)
   return validation;
