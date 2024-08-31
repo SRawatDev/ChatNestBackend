@@ -5,6 +5,7 @@ import getUserInfo from "../helper/getUserInfo.js"; // Place all imports at the 
 import userModel from "../model/user.model.js";
 import conversationModel from "../model/conversation.model.js";
 import messageModel from "../model/message.model.js";
+import roommodel from "../model/room.model.js";
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -104,6 +105,31 @@ io.on("connection", async (socket) => {
           socket.emit("error", "Failed to send message.");
         }
       });
+
+      socket.on("group-message", async (data) => {
+        try {
+          console.log("====",data)
+            const { groupId, text, imageUrl, videoUrl, senderId } = data;
+            const messageData = await messageModel.create({
+                text,
+                imageUrl,
+                videoUrl,
+                msgByUserId: senderId,
+                groupId,
+            });
+
+            if(!await roommodel.findOne({_id:data?.roomId}))
+            {
+              
+            }
+
+            io.to(groupId).emit("group-message", messageData);
+            console.log(`Message sent to group ${groupId}:`, messageData);
+        } catch (error) {
+            console.error("Error sending group message:", error.message);
+            socket.emit("error", "Failed to send group message.");
+        }
+    });
   
 
   
