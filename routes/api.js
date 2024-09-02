@@ -14,5 +14,7 @@ routes.post("/updateUserProfile",usermiddleware,UserController.userUpdateProfile
 routes.post("/userLogout",usermiddleware,UserController.userLogout)
 routes.post("/createRoom",usermiddleware,CreateRoom)
 routes.get("/userRoominfo",usermiddleware,userRoom)
+routes.get("/getconversation",usermiddleware,UserController.fetchingconversation)
+routes.post("/deleteaccount",usermiddleware,UserController.deleteaccount)
 
 export default routes;

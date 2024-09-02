@@ -124,4 +124,34 @@ UserController.userLogout = async (request, response) => {
     });
   }
 };
+
+
+UserController.fetchingconversation=async(request,response)=>{
+  try {
+    const data = await userService.getconversation(request);
+    return response.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    return response.status(500).json({
+      message: error.message,
+      status: false,
+    });
+    
+  }
+}
+
+UserController.deleteaccount=async(request,response)=>{
+  try {
+    const data = await userService.delete(request);
+    return response.status(200).json(data);
+    
+  } catch (error) {
+    console.log(error);
+    return response.status(500).json({
+      message: error.message,
+      status: false,
+    });
+    
+  }
+}
 export default UserController;
