@@ -3,7 +3,7 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { app,server } from "./socket/index.js";
+import { app,server } from "./websocket/index.js";
 import connection from "./db/connection.js";
 import Router from "./routes/api.js";
 import dotenv from "dotenv"
