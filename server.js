@@ -21,6 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 console.log("-->>>",__filename)
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public', 'images')));
+app.use(express.static(path.join(__dirname, 'public', 'tempUploads')));
 app.use(express.json());
 app.use(cookieParser())
 app.use(fileUpload())
