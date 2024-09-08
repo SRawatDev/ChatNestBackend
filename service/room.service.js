@@ -23,19 +23,41 @@ roomservice.createroom = async (request) => {
   };
 };
 
-roomservice.getuserRoom = async (request) => {
+roomservice.getuserRoom = async (userid) => {
   const data = await roommodel.aggregate([
     {
       $match: {
         users: {
-          $in: [request.UserData._id],
+          $in: [userid],
         },
+      },
+    },
+
+    {
+      $lookup: {
+        from: "messages",
+        localField: "messages",
+        foreignField: "_id",
+        as: "messages",
+        pipeline: [
+          {
+            $sort: {
+              createdAt: -1,
+            },
+          },
+          {
+            $project: {
+              text: 1,
+              createdAt:1
+            },
+          },
+        ],
       },
     },
     {
       $project: {
         users: 0,
-        messages: 0,
+        // messages: 0,
         createdAt: 0,
         __v: 0,
       },

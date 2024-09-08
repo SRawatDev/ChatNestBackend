@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://chat-nest-zeta.vercel.app",
+    origin: ["https://chat-nest-zeta.vercel.app", "http://localhost:3000"],
     credentials: true,
   },
 });
@@ -116,13 +116,12 @@ io.on("connection", async (socket) => {
             },
           },
           {
-            $lookup:{
-              from:"users",
-              localField:"users",
-              foreignField:"_id",
-              as:"users"
-            }
-
+            $lookup: {
+              from: "users",
+              localField: "users",
+              foreignField: "_id",
+              as: "users",
+            },
           },
           {
             $lookup: {

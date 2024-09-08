@@ -22,7 +22,7 @@ export const CreateRoom = async (request, response) => {
 export const userRoom=async(request,response)=>{
   
   try {
-    const data=await  roomservice.getuserRoom(request)
+    const data=await  roomservice.getuserRoom(request.UserData._id)
     return response.status(200).json(data)
     
   } catch (error) {

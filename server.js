@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8000;
 // const app = express();
 dotenv.config()
 app.use(cors({
-    origin: "https://chat-nest-zeta.vercel.app",
+    origin: ["https://chat-nest-zeta.vercel.app","http://localhost:3000"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization"
